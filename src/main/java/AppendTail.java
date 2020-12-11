@@ -73,6 +73,33 @@ public class AppendTail {
 //        return res;
         }
     }
+    //这个是正解，我写的太lj
+//    class CQueue {
+//        //成员变量
+//        Stack<Integer> A,B;
+//
+//        //构造方法
+//        public CQueue() {
+//            A = new Stack<>();
+//            B = new Stack<>();
+//        }
+//
+//        public void appendTail(int value) {
+//            A.push(value);
+//        }
+//
+//        public int deleteHead() {
+//            if(B.isEmpty()){
+//                if(A.isEmpty()){
+//                    return -1;
+//                }
+//                while(!A.isEmpty()){
+//                    B.push(A.pop());
+//                }
+//            }
+//            return B.pop();
+//        }
+//    }
 
 /**
  * Your CQueue object will be instantiated and called as such:
