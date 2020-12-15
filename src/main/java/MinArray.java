@@ -29,38 +29,76 @@ public class MinArray {
     class Solution {
         //[1,1,3,1]
         //[10,10,10,1,10]
-        public int minArray(int[] numbers) {
+//    public int minArray0(int[] numbers) {
+//        if (numbers.length == 1) {
+//            return numbers[0];
+//        }
+//        int last = numbers[numbers.length - 1];
+//        int d = numbers.length / 2;
+//        int index = d;
+//        int mid = 0;
+//        while (d != 0) {
+//            mid = numbers[index];
+//            d /= 2;
+//            if (mid > last) {
+//                // 最小值在右半边
+//                index += d;
+//                continue;
+//            }
+//            if (mid == last) {
+//                index = numbers.length - 1;
+//            }
+//            //逐次向前查找
+//            while (true) {
+//                if (index == 0) {
+//                    return numbers[0];
+//                }
+//                if (numbers[index] >= numbers[index - 1]) {
+//                    index--;
+//                } else {
+//                    return numbers[index];
+//                }
+//            }
+//        }
+//        return last;
+//    }
+        // 三种情况：
+        //  1.全递增 123456
+        //  2.全相等 111111
+        //  3.两个递增 456123
+        public int minArray0(int[] numbers) {
             if (numbers.length == 1) {
                 return numbers[0];
             }
-            int last = numbers[numbers.length - 1];
-            int d = numbers.length / 2;
-            int index = d;
-            int mid = 0;
-            while (d != 0) {
-                mid = numbers[index];
-                d /= 2;
-                if (mid > last) {
-                    // 最小值在右半边
-                    index += d;
-                    continue;
-                }
-                if (mid == last) {
-                    index = numbers.length - 1;
-                }
-                //逐次向前查找
-                while (true) {
-                    if (index == 0) {
-                        return numbers[0];
-                    }
-                    if (numbers[index] >= numbers[index - 1]) {
-                        index--;
-                    } else {
-                        return numbers[index];
-                    }
+            for (int i = 0; i < numbers.length - 1; i++) {
+                if (numbers[i] > numbers[i + 1]) {
+                    return numbers[i + 1];
                 }
             }
-            return last;
+            return numbers[0];
+        }
+
+        public int minArray(int[] numbers) {
+            // 二分法
+            // mid=中间指针
+            // left 和 right 作为左右边界
+            int left = 0;
+            int right = numbers.length - 1;
+            int mid;
+            while (left < right) {
+                mid = left + (right - left) / 2;
+                // 中间大于右，最小值在右半边
+                if (numbers[mid] > numbers[right]) {
+                    left = mid + 1;
+                } else if (numbers[mid] < numbers[right]) {
+                    // 中间小于右，最小值在左半边
+                    right = mid;
+                } else {
+                    right--;
+                }
+
+            }
+            return numbers[left];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
