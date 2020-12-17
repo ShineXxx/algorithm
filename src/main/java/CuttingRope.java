@@ -46,6 +46,22 @@ public class CuttingRope {
             return dp[n];
         }
     }
+
+    class Solution1 {
+        public int cuttingRope(int n) {
+            if (n < 4) {
+                return n - 1;
+            } else if (n == 4) {
+                return n;
+            }
+            long res = 1;
+            while (n > 4) {
+                res *= 3;
+                n -= 3;
+            }
+            return (int) (res * n );
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
