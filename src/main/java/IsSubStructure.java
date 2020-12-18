@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.Queue;
+
 /**
  * @Author zhj
  * @Description 26.树的子结构
@@ -8,13 +9,17 @@ import java.util.Queue;
 public class IsSubStructure {
 
     public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x) { val = x; }
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
     }
+
     class Solution {
-        public boolean isSubStructure(TreeNode A, TreeNode B) {
+        public boolean isSubStructure0(TreeNode A, TreeNode B) {
             //广度优先搜索
             if (B == null) {
                 return false;
@@ -34,6 +39,18 @@ public class IsSubStructure {
                 }
             }
             return false;
+        }
+
+        public boolean isSubStructure(TreeNode A, TreeNode B) {
+            //广度优先搜索
+            if (B == null || A == null) {
+                return false;
+            }
+            if (isSame(A, B)) {
+                return true;
+            }
+            return isSubStructure(A.right, B) ||
+                    isSubStructure(A.left, B);
         }
 
         boolean isSame(TreeNode a, TreeNode b) {
