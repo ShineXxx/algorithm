@@ -40,6 +40,7 @@ import java.util.*;
 class MinStack {
 
     Stack<Integer> stack = new Stack<>();
+    Stack<Integer> aux = new Stack<>();
     int min = Integer.MAX_VALUE;
 
     /**
@@ -51,7 +52,8 @@ class MinStack {
 
     public void push(int x) {
         if (min >= x) {
-            stack.push(min);
+//            stack.push(min);
+            aux.push(min);
             min = x;
         }
         stack.push(x);
@@ -59,7 +61,7 @@ class MinStack {
 
     public void pop() {
         if (min == stack.pop()) {
-            min = stack.pop();
+            min = aux.pop();
         }
     }
 
