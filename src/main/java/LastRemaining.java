@@ -3,7 +3,7 @@
  * 62.圆圈中最后剩下的数字(待续)
  */
 public class LastRemaining {
-    //0,1,,n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求出这个圆圈里剩下的最后一个数字。
+//0,1,,n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求出这个圆圈里剩下的最后一个数字。
 //
 // 例如，0、1、2、3、4这5个数字组成一个圆圈，从数字0开始每次删除第3个数字，则删除的前4个数字依次是2、0、4、1，因此最后剩下的数字是3。
 //
@@ -35,25 +35,11 @@ public class LastRemaining {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int lastRemaining(int n, int m) {
-            int[] arr = new int[n];
-            int total = n;
-            int index = 0;
-            while (total != 1) {
-                for (int i = 0; i < m-1; i++) {
-                    while (arr[index] == 1) {
-                        index = (index+1 % n) ;
-                    }
-                }
-                arr[index] = 1;
-                index = (index+1 % n) ;
-                total--;
+            int f = 0;
+            for (int i = 2; i != n + 1; ++i) {
+                f = (m + f) % i;
             }
-            for (int i = 0; i < arr.length; i++) {
-                if (arr[i] == 0) {
-                    return i;
-                }
-            }
-            return -1;
+            return f;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
